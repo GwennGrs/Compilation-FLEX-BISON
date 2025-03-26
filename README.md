@@ -38,4 +38,44 @@ return TOK_NOT;
 }
 ```
 ### 3.3
+J'ai cette fois ajouter les ponctuations du langages.
 #### Exercice 2
+Puis ai ajouter les autres ponctuations du langage de la même manière que pour l'exercice 1.
+
+### 3.4 
+J'ai ajouter dans facile.lex un analyseur renvoyant le nombre de caractère d'une chaine (prenant en compte les nombres).
+
+#### Exercice 3
+J'ai réalisé la reconnaissance des nombres selon le principe de langage facile. 
+```
+0|[1-9][0-9]* {
+assert(printf("identifier '%s' found", yytext));
+return TOK_NUMBER;
+}
+```
+Ce code identifie s'il detecte 0 ou une suite de chiffre commencant par un chiffre différent de 0.
+
+### 3.5
+Cela permet d'ignorer les retours à la ligne et les tabulations.
+```
+[ \t\n] ;
+```
+
+Ce code permet de reconnaitre le point de l'ignorer.
+```
+. {
+return yytext[0];
+}
+```
+
+## 4
+### 4.1 
+J'ai modifié le CMakeLists afin de permettre l'utilisation de Bison.
+Création du fichier facile.y.
+
+### 4.2
+Je teste le compilateur.
+
+## 5
+### 5.1
+

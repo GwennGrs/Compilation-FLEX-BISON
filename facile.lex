@@ -1,10 +1,8 @@
 %{
 #include <assert.h>
-#define TOK_IF 258
-#define TOK_THEN 259
-#define TOK_FOR 260
-#define TOK_NOT 261
+#include "facile.y.h"
 %}
+%option yylineno
 %%
 if {
 assert(printf("'if' found"));
@@ -14,19 +12,44 @@ then {
 assert(printf("'then' found"));
 return TOK_THEN;
 }
-
-for {
-assert(printf("'for' found"));
-return TOK_FOR;
+";" {
+assert(printf("';' found"));
+return TOK_SEMI_COLON;
 }
-
-not {
-assert(printf("'not' found"));
-return TOK_NOT;
+":=" {
+assert(printf("':=' found"));
+return TOK_AFFECTATION;
 }
-
-[ab]*a[ab]*b[ab]*b[ab]*a assert(printf("'abba' found")); return yytext[0];
+"+" {
+assert(printf("'+' found"));
+return TOK_ADD;
+}
+"-" {
+assert(printf("'-' found"));
+return TOK_SUB;
+}
+"*" {
+assert(printf("'*' found"));
+return TOK_MUL;
+}
+"/" {
+assert(printf("'/' found"));
+return TOK_DIV;
+}
+[a-zA-Z][a-zA-Z0-9_]* {
+assert(printf("identifier '%s(%d)' found", yytext, yyleng));
+return TOK_IDENTIFIER;
+}
+"0" {
+assert(printf("number '%s(%d)' found", yytext, yyleng));
+return TOK_NUMBER;
+}
+[ \t\n] ;
+. {
+return yytext[0];
+}
 %%
 /*
 * file: facile.lex
+* version: 0.8.0
 */

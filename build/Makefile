@@ -173,6 +173,30 @@ facile.lex.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/facile.dir/build.make CMakeFiles/facile.dir/facile.lex.c.s
 .PHONY : facile.lex.c.s
 
+facile.y.o: facile.y.c.o
+.PHONY : facile.y.o
+
+# target to build an object file
+facile.y.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/facile.dir/build.make CMakeFiles/facile.dir/facile.y.c.o
+.PHONY : facile.y.c.o
+
+facile.y.i: facile.y.c.i
+.PHONY : facile.y.i
+
+# target to preprocess a source file
+facile.y.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/facile.dir/build.make CMakeFiles/facile.dir/facile.y.c.i
+.PHONY : facile.y.c.i
+
+facile.y.s: facile.y.c.s
+.PHONY : facile.y.s
+
+# target to generate assembly for a file
+facile.y.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/facile.dir/build.make CMakeFiles/facile.dir/facile.y.c.s
+.PHONY : facile.y.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -187,6 +211,9 @@ help:
 	@echo "... facile.lex.o"
 	@echo "... facile.lex.i"
 	@echo "... facile.lex.s"
+	@echo "... facile.y.o"
+	@echo "... facile.y.i"
+	@echo "... facile.y.s"
 .PHONY : help
 
 

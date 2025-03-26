@@ -1,7 +1,7 @@
 # file: CMakeLists.txt
-# version: 0.1.0
+# version: 0.6.0
 cmake_minimum_required(VERSION 3.0)
-project(facile VERSION 0.1.0 LANGUAGES C)
+project(facile VERSION 0.6.0 LANGUAGES C)
 # Search for the flex cmake package
 find_package(FLEX)
 # Definition of a scanner
@@ -10,8 +10,19 @@ FACILE_SCANNER
 facile.lex
 "${CMAKE_CURRENT_BINARY_DIR}/facile.lex.c"
 )
+# Definition of a parser
+find_package(BISON)
+bison_target(
+FACILE_PARSER
+facile.y
+"${CMAKE_CURRENT_BINARY_DIR}/facile.y.c"
+)
 # Creation of the "facile" executable
-add_executable(facile ${FLEX_FACILE_SCANNER_OUTPUTS})
+add_executable(
+facile
+${FLEX_FACILE_SCANNER_OUTPUTS}
+${BISON_FACILE_PARSER_OUTPUTS}
+)
 # Add flex library to the "facile" executable
 target_link_libraries(facile fl)
 # Add zip generator
