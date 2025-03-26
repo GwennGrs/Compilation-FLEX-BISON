@@ -352,8 +352,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 1
-#define YY_END_OF_BUFFER 2
+#define YY_NUM_RULES 6
+#define YY_END_OF_BUFFER 7
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -361,9 +361,11 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[6] =
+static const flex_int16_t yy_accept[28] =
     {   0,
-        0,    0,    2,    1,    0
+        0,    0,    7,    6,    6,    6,    6,    6,    6,    6,
+        0,    0,    0,    0,    0,    1,    0,    0,    0,    0,
+        3,    4,    0,    5,    0,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -377,10 +379,10 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    2,    3,    1,    1,
 
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        4,    5,    1,    6,    7,    1,    1,    1,    1,    8,
+        9,    1,    1,   10,    1,   11,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -398,29 +400,40 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[2] =
+static const YY_CHAR yy_meta[12] =
     {   0,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1
     } ;
 
-static const flex_int16_t yy_base[7] =
+static const flex_int16_t yy_base[28] =
     {   0,
-        0,    0,    2,    3,    3,    0
+        0,    0,   28,   29,   10,   12,   18,   21,   16,   18,
+        0,   14,    0,    0,   13,   29,   11,   17,    0,   16,
+       29,   29,   12,    0,    0,   29,   29
     } ;
 
-static const flex_int16_t yy_def[7] =
+static const flex_int16_t yy_def[28] =
     {   0,
-        6,    6,    5,    5,    0,    5
+       27,    1,   27,   27,   27,   27,   27,   27,   27,   27,
+        5,   27,    5,    6,   27,   27,   27,   27,   12,   27,
+       27,   27,   27,   20,   20,   27,    0
     } ;
 
-static const flex_int16_t yy_nxt[5] =
+static const flex_int16_t yy_nxt[41] =
     {   0,
-        4,    5,    3,    5
+        4,    5,    6,    4,    7,    4,    8,    9,    4,    4,
+       10,   11,   12,   13,   14,   19,   20,   24,   25,   26,
+       23,   22,   21,   18,   17,   16,   15,   27,    3,   27,
+       27,   27,   27,   27,   27,   27,   27,   27,   27,   27
     } ;
 
-static const flex_int16_t yy_chk[5] =
+static const flex_int16_t yy_chk[41] =
     {   0,
-        6,    3,    5,    5
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    5,    5,    6,    6,   12,   12,   20,   20,   23,
+       18,   17,   15,   10,    9,    8,    7,    3,   27,   27,
+       27,   27,   27,   27,   27,   27,   27,   27,   27,   27
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -438,7 +451,14 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "facile.lex"
-#line 442 "/media/Nas/ggarrigu/L3/compilation/Compilation-FLEX-BISON/build/facile.lex.c"
+#line 2 "facile.lex"
+#include <assert.h>
+#define TOK_IF 258
+#define TOK_THEN 259
+#define TOK_FOR 260
+#define TOK_NOT 261
+#line 461 "/media/Nas/ggarrigu/L3/compilation/Compilation-FLEX-BISON/build/facile.lex.c"
+#line 462 "/media/Nas/ggarrigu/L3/compilation/Compilation-FLEX-BISON/build/facile.lex.c"
 
 #define INITIAL 0
 
@@ -655,9 +675,9 @@ YY_DECL
 		}
 
 	{
-#line 1 "facile.lex"
+#line 8 "facile.lex"
 
-#line 661 "/media/Nas/ggarrigu/L3/compilation/Compilation-FLEX-BISON/build/facile.lex.c"
+#line 681 "/media/Nas/ggarrigu/L3/compilation/Compilation-FLEX-BISON/build/facile.lex.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -684,13 +704,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 6 )
+				if ( yy_current_state >= 28 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 3 );
+		while ( yy_base[yy_current_state] != 29 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -716,10 +736,47 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 2 "facile.lex"
+#line 9 "facile.lex"
+{
+assert(printf("'if' found"));
+return TOK_IF;
+}
+	YY_BREAK
+case 2:
+YY_RULE_SETUP
+#line 13 "facile.lex"
+{
+assert(printf("'then' found"));
+return TOK_THEN;
+}
+	YY_BREAK
+case 3:
+YY_RULE_SETUP
+#line 18 "facile.lex"
+{
+assert(printf("'for' found"));
+return TOK_FOR;
+}
+	YY_BREAK
+case 4:
+YY_RULE_SETUP
+#line 23 "facile.lex"
+{
+assert(printf("'not' found"));
+return TOK_NOT;
+}
+	YY_BREAK
+case 5:
+YY_RULE_SETUP
+#line 28 "facile.lex"
+assert(printf("'abba' found")); return yytext[0];
+	YY_BREAK
+case 6:
+YY_RULE_SETUP
+#line 29 "facile.lex"
 ECHO;
 	YY_BREAK
-#line 723 "/media/Nas/ggarrigu/L3/compilation/Compilation-FLEX-BISON/build/facile.lex.c"
+#line 780 "/media/Nas/ggarrigu/L3/compilation/Compilation-FLEX-BISON/build/facile.lex.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1016,7 +1073,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 6 )
+			if ( yy_current_state >= 28 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1044,11 +1101,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 6 )
+		if ( yy_current_state >= 28 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 5);
+	yy_is_jam = (yy_current_state == 27);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1724,11 +1781,9 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 2 "facile.lex"
-
+#line 29 "facile.lex"
 
 /*
 * file: facile.lex
-* version: 0.1.0
 */
 

@@ -1,1 +1,1 @@
-/usr/bin/cc -rdynamic CMakeFiles/facile.dir/facile.lex.c.o -o facile  -lfl 
+/usr/bin/cc -g -rdynamic CMakeFiles/facile.dir/facile.lex.c.o -o facile  -lfl 
