@@ -83,10 +83,30 @@ Je teste le compilateur.
 Cette exercice avait pour but d'ajouter des règles dans notre langage pour gérer des instructions "if".
 
 J'ai pour cela du ajouter plusieurs éléments.
-Pour commencer dans mpon analyseur lexical (le fichier .lex), j'ai ajouté 4 éléments : 
+Pour commencer dans mpon analyseur lexical (le fichier facile.lex), j'ai ajouté 4 éléments : 
 - Le token "if" pour la détection du mot if. (J'ai ajouté celui au dessus de l'identification des caractères pour un soucis de priorité).
 - Le token ">" pour la détection de l'élément de comparaison "supérieur".
 - Le token "<" pour la détection de l'élement de comparaison "inférieur".
 - Le token "==" pour la détection de l'élément de comparaison d'égalité.
 
-Une fois cela fais j'ai ajouté dans mon fichier .y les différents token.
+Une fois cela fais j'ai ajouté dans mon analyseur syntaxique (fichier facile.y) les différents token.
+Puis défini des noeuds pour des instructions :
+  %type<node> if_instruction
+  %type<node> bool_expr
+
+#### Exercice 5 :
+J'ai ajouté 2 token : 
+- Un token "else" pour la détection du mot 'else'.
+- Un token "elseif" pour la détection du mot 'elseif'.
+
+J'ai défini ensuite : 
+```
+if_instruction:
+	TOK_IF TOK_OPEN_PARENTHESIS bool_expr TOK_CLOSE_PARENTHESIS instruction
+	{
+		$$ = g_node_new("if");
+		g_node_append($$, $3); // bool_expr
+		g_node_append($$, $5); // instruction
+	}
+;
+```
