@@ -79,3 +79,14 @@ Je teste le compilateur.
 ## 5
 ### 5.1
 
+#### Exercice 4 :
+Cette exercice avait pour but d'ajouter des règles dans notre langage pour gérer des instructions "if".
+
+J'ai pour cela du ajouter plusieurs éléments.
+Pour commencer dans mpon analyseur lexical (le fichier .lex), j'ai ajouté 4 éléments : 
+- Le token "if" pour la détection du mot if. (J'ai ajouté celui au dessus de l'identification des caractères pour un soucis de priorité).
+- Le token ">" pour la détection de l'élément de comparaison "supérieur".
+- Le token "<" pour la détection de l'élement de comparaison "inférieur".
+- Le token "==" pour la détection de l'élément de comparaison d'égalité.
+
+Une fois cela fais j'ai ajouté dans mon fichier .y les différents token.
