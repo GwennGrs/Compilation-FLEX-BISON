@@ -110,3 +110,54 @@ if_instruction:
 	}
 ;
 ```
+```
+bool_expr:
+	expr TOK_INF expr
+	{
+		$$ = g_node_new("inf");
+		g_node_append($$, $1);
+		g_node_append($$, $3);
+	}
+|
+	expr TOK_SUPP expr
+	{
+		$$ = g_node_new("supp");
+		g_node_append($$, $1);
+		g_node_append($$, $3);
+	}
+|
+	expr TOK_EQ expr
+	{
+		$$ = g_node_new("eq");
+		g_node_append($$, $1);
+		g_node_append($$, $3);
+	}
+;
+```
+
+"if_instruction" permettant de définir le "if" entre les parenthèses et de créer des noeuds fils pour l'expression booléenne et l'instruction.
+"bool_expr" défini les 3 expressions booléennes que l'on peut retrouver dans notre code. (inférieur : < ; supérieur : > ; égalité : ==)
+
+Puis dans la fonction produce_code : 
+```
+else if (node->data == "if") {
+		int label = label_counter++;
+		produce_code(g_node_nth_child(node, 0)); 
+		if (g_node_nth_child(node, 0)->data == "inf") {
+			fprintf(stream, "	bge L%d\n", label); 
+		} else if (g_node_nth_child(node, 0)->data == "supp") {
+			fprintf(stream, "	ble L%d\n", label); 
+		} else if (g_node_nth_child(node, 0)->data == "eq") {
+			fprintf(stream, "	bne.un L%d\n", label); /
+		}
+		produce_code(g_node_nth_child(node, 1)); 
+		fprintf(stream, "L%d:\n", label);
+	} else if (node->data == "inf" || node->data == "supp" || node->data == "eq") {
+		produce_code(g_node_nth_child(node, 0));
+		produce_code(g_node_nth_child(node, 1));
+	}
+}
+```
+Trouvable dans -> https://en.wikipedia.org/wiki/List_of_CIL_instructions
+"bge L" envoie l'instruction et va dans la fonction produce code si la condition est bonne, sinon va dans la ligne du dessous "label" afin de sauter l'instruction.
+Le fonctionnement est similaire pour ble et bne. 
