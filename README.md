@@ -261,3 +261,4 @@ else if (node->data == "break") {
 Tout ceci permet à mon langage facile de gérer les boucles imbriquées.
 
 #### Exercice 10
+Afin de vérifier le bon fonctionnement j'ai écrit un programme pgcd.exe en langage facile calculant le premier diviseur commun.
