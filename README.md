@@ -2,6 +2,7 @@ Token : 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
 # Compilation-FLEX-BISON
 
 ## Introduction 
+Chaque exercice à partir du 4, possède son fichier essaie1.exe avec des tests pour valider le bon fonctionnement des ajouts.
 
 ## 3. Analyseur lexical
 
