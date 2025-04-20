@@ -219,3 +219,6 @@ else if (node->data == "break") {
     }
 }
 ```
+
+#### Exercice 9
+La première version du while faisait déjà fonctionner les boucles while imbriquées, aucune modification supplémentaire ne fut nécessaire.
