@@ -161,3 +161,50 @@ else if (node->data == "if") {
 Trouvable dans -> https://en.wikipedia.org/wiki/List_of_CIL_instructions
 "bge L" envoie l'instruction et va dans la fonction produce code si la condition est bonne, sinon va dans la ligne du dessous "label" afin de sauter l'instruction.
 Le fonctionnement est similaire pour ble et bne. 
+
+#### Exercice 6 :
+L'exercice 6 permet une redéfinition plus poussé de nos if, else et elseif. En effet, on ajoute la possibilité de faire des requêtes imbriquées. 
+La méthode de fonctionnement de nos if reste généralement la même. 
+J'ai séparé le fonctionnement de mes if en 2 instructions, les if et les if_suivant, ajoutant également une notion de "block" afin de séparé les suites de requètes imbriquées.
+Dans l'exercice 5, chaque éventualité était définie individuellement, dans cette version j'ai utilisé un compteur permettant de définir autant de elseif que possible. 
+Pour cela j'ai utilisé une instruction if_suivant permettant de créer un elseif avec une expression booléenne et un block puis de laisser place à une condition suivante (ou null).
+```
+if_suivant:
+    TOK_ELSEIF TOK_OPEN_PARENTHESIS bool_expr TOK_CLOSE_PARENTHESIS block if_suivant
+    {
+        $$ = g_node_new("elseif");
+        g_node_append($$, $3); 
+        g_node_append($$, $5); 
+        g_node_append($$, $6);
+    }
+|
+    TOK_ELSE block
+    {
+        $$ = g_node_new("else");
+        g_node_append($$, $2); // else block
+    }
+|
+    {
+        $$ = g_node_new("vide");
+    }
+;
+```
+
+Pour les requètes imbriquées j'ai ajouter la notion de "block" donc. 
+```
+block:
+    TOK_OPEN_BRACE code TOK_CLOSE_BRACE
+    {
+        $$ = g_node_new("block");
+        g_node_append($$, $2);
+    }
+;
+```
+Cela permet de définir tout instructions présente dans la partie "block" comme associé à une requète, cela permet de faire des blocks dans des blocks (requètes imbriquées).
+On exécutera le code sous forme de block afin de controler l'ordre de ce dernier.
+
+On défini des la détection d'un if, un label pour revenir à la fin du if une fois son exécution terminé et on déclare en parallèles une structure pour faire une liste de label pour les différentes branches des elseif.
+Le fonctionnement du if est le même ensuite, si la condition est valide on exécute le code, sinon on saute à la ligne du label (fin du if). 
+Le block nous permet de définir un ensemble d'instruction a faire, cela permet de séparé, il sera appelé dans les if, elseif et else.
+
+Cette exercice m'aura permis d'ajouter 2 grands principes importants de la programmation conditonelle, les blocks permettant d'exécuter des suites de "if" dans des "if" et la modification de la détection des elseif, permettant l'addition en illimité de condition elseif. 
