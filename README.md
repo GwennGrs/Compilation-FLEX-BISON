@@ -4,24 +4,6 @@ Token : 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
 ## Introduction 
 Chaque exercice à partir du 4, possède son fichier essaie1.exe avec des tests pour valider le bon fonctionnement des ajouts.
 
-## 3. Analyseur lexical
-
-### 3.1
-Création du CMakeList et d'un analyseur de base.
-
-Puis création du build afin de compilé notre première version de l'analyseur.
-Je me place dans le build et compile avec cmake .. et make.
-
-N'ayant rien défini dans le fichier de l'analyseur je me retrouve avec seulement un programme qui recopie ce que je lui donne en entrée.
-
-### 3.2
-J'ai ajouter dans mon facile.lex les informations nécessaires à la reconnaissance des mots "then" et "if". 
-Je recompile ensuite et vois que tout les mots sont recopiés comme intialement mais que "if" et "found" renvoie : 
-- if 
-- "if found" 
-- "then" 
-- "then found"
-
 #### Exercice 1
 J'ai ensuite ajouter lettres autres mot du langage. Exemple : (not, or, for)
 ```
@@ -38,13 +20,8 @@ assert(printf("'not' found"));
 return TOK_NOT;
 }
 ```
-### 3.3
-J'ai cette fois ajouter les ponctuations du langages.
 #### Exercice 2
 Puis ai ajouter les autres ponctuations du langage de la même manière que pour l'exercice 1.
-
-### 3.4 
-J'ai ajouter dans facile.lex un analyseur renvoyant le nombre de caractère d'une chaine (prenant en compte les nombres).
 
 #### Exercice 3
 J'ai réalisé la reconnaissance des nombres selon le principe de langage facile. 
@@ -55,30 +32,6 @@ return TOK_NUMBER;
 }
 ```
 Ce code identifie s'il detecte 0 ou une suite de chiffre commencant par un chiffre différent de 0.
-
-### 3.5
-Cela permet d'ignorer les retours à la ligne et les tabulations.
-```
-[ \t\n] ;
-```
-
-Ce code permet de reconnaitre le point de l'ignorer.
-```
-. {
-return yytext[0];
-}
-```
-
-## 4
-### 4.1 
-J'ai modifié le CMakeLists afin de permettre l'utilisation de Bison.
-Création du fichier facile.y.
-
-### 4.2
-Je teste le compilateur.
-
-## 5
-### 5.1
 
 #### Exercice 4 :
 Cette exercice avait pour but d'ajouter des règles dans notre langage pour gérer des instructions "if".
