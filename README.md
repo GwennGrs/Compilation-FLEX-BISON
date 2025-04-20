@@ -227,3 +227,16 @@ Le while fonctionne de la manière suivante dans le process :
 - on va dans le label de départ pour exécuter la condition :
 	- si la condition est validée, je passe dans le block qui une fois fini me ramènera dans le label de départ.
 	- si la condition est fausse on sort du while en allant dans le label de fin. 
+```
+else if (node->data == "while"){ 
+    int label_depart = label_count++;
+    int label_fin = label_count++;
+    
+    fprintf(stream, "L%d:\n", label_depart); 
+    produce_code(g_node_nth_child(node, 0)); 
+    fprintf(stream, "    brfalse L%d\n", label_fin);
+    produce_code(g_node_nth_child(node, 1));
+    fprintf(stream, "    br L%d\n", label_depart); 
+    fprintf(stream, "L%d:\n", label_fin);
+}
+```
