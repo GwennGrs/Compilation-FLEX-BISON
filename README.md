@@ -222,4 +222,42 @@ else if (node->data == "break") {
 Une rénitialisation des labels static est nécessaire à la fin pour éviter qu'un break hors d'une boucle après un while puisse récupérer un label et faire tourner notre code en boucle (il appelerai le label à chaque fois sans jamais le rénitisaliser).
 
 #### Exercice 9
-La première version du while faisait déjà fonctionner les boucles while imbriquées, aucune modification supplémentaire ne fut nécessaire.
+Afin de pouvoir gérer les boucles imbriquées, j'ai du modifier la gestion des labels pour les while, pour cela je suis passé par un système de pile et de tableau de labels.
+```
+#define max 20
+static int dep_while_label[max];
+static int fin_while_label[max];
+static int stack_top = -1;
+```
+A chaque nouvelle exécution d'un while, on ajoute dans la pile des labels ses propres labels de départ et de fin (si on veut ajouter un label alors que le nombre max est dépassé on se retrouve avec une erreur).
+Une fois le while terminé on réduit de 1 le compte de pile (stack_top) et on l'incrémente quand on ajoute une nouvelle boucle. 
+```
+if (stack_top < max - 1) {
+            stack_top++;
+            dep_while_label[stack_top] = label_depart;
+            fin_while_label[stack_top] = label_fin;
+        } else {
+            fprintf(stderr, "Erreur on dépasse les boucles\n");
+            return;
+        }
+```
+Cette gestion des while via une pile permet de garder une arborescence de l'exécution de nos boucles.
+A l'appel d'un break ou d'un continue cette gestion via une pile permet d'interrompre la bonne boucle.
+```
+else if (node->data == "break") {
+    if (fin_while_label == -1) {
+        fprintf(stderr, "Erreur hors while\n");
+    } else {
+        fprintf(stream, "    br L%d\n", fin_while_label[stack_top]);
+    }
+} else if (node->data == "continue") {
+    if (dep_while_label == -1) {
+        fprintf(stderr, "Erreur hors while\n");
+    } else {
+        fprintf(stream, "    br L%d\n", dep_while_label[stack_top]);
+    }
+}
+```
+Tout ceci permet à mon langage facile de gérer les boucles imbriquées.
+
+#### Exercice 10
