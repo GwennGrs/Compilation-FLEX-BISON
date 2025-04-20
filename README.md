@@ -240,3 +240,28 @@ else if (node->data == "while"){
     fprintf(stream, "L%d:\n", label_fin);
 }
 ```
+
+#### Exercice 8
+Ajout de break et continue dans mon while.
+Pour une gestion possible des labels des while même en dehors de ces derniers, je suis passé par des variables d'environnements.
+```
+static int static_label_courant = -1;
+static int static_label_final = -1;
+```
+Définie sur -1, elles prennent une valeur impossible à retrouver pour des labels, -1 étant donc la valeur d'erreur par défaut (si on lit un break ou un continue en dehors d'un while).
+Pour ces 2 conditions, j'ai ajouté une détection des mots break et continue, qui une fois lu, emmène pour continue au label courant (fais reprendre le while à son origine interompant seulement l'itération en cours) et emmène à la fin du while (stop la boucle) en cas de break.
+```
+else if (node->data == "break") {
+    if (static_label_final == -1) {
+        fprintf(stderr, "Erreur hors while\n");
+    } else {
+        fprintf(stream, "    br L%d\n", static_label_final);
+    }
+} else if (node->data == "continue") {
+    if (static_label_courant == -1) {
+        fprintf(stderr, "Erreur hors while\n");
+    } else {
+        fprintf(stream, "    br L%d\n", static_label_courant);
+    }
+}
+```
