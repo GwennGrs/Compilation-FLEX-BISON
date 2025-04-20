@@ -208,3 +208,22 @@ La définition des labels se fait dès la détection du if et du elseif, permett
 Le block nous permet de définir un ensemble d'instruction a faire, cela permet de séparer, il sera appelé dans les if, elseif et else. 
 
 Cette exercice m'aura permis d'ajouter 2 grands principes importants de la programmation conditonelle, les blocks permettant d'exécuter des suites de "if" dans des "if" et la modification de la détection des elseif, permettant l'addition en illimité de condition elseif. 
+
+#### Exercice 7 :
+J'ai dans cet exercice ajouter un élément "while". 
+```
+while:
+    TOK_WHILE TOK_OPEN_PARENTHESIS bool_expr TOK_CLOSE_PARENTHESIS block
+    {
+        $$ = g_node_new("while");
+        g_node_append($$, $3);  
+        g_node_append($$, $5); 
+    }
+;
+```
+Le while à la même structure que le if, il comporte sa déclaration "TOK_WHILE", une expression booléenne entre parenthèses et un block d'instructions lié.
+Le while fonctionne de la manière suivante dans le process : 
+- on définie les labels de départ et de fin.
+- on va dans le label de départ pour exécuter la condition :
+	- si la condition est validée, je passe dans le block qui une fois fini me ramènera dans le label de départ.
+	- si la condition est fausse on sort du while en allant dans le label de fin. 
