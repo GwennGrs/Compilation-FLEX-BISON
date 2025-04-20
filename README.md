@@ -219,6 +219,7 @@ else if (node->data == "break") {
     }
 }
 ```
+Une rénitialisation des labels static est nécessaire à la fin pour éviter qu'un break hors d'une boucle après un while puisse récupérer un label et faire tourner notre code en boucle (il appelerai le label à chaque fois sans jamais le rénitisaliser).
 
 #### Exercice 9
 La première version du while faisait déjà fonctionner les boucles while imbriquées, aucune modification supplémentaire ne fut nécessaire.
