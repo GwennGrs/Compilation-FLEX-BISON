@@ -204,7 +204,7 @@ Cela permet de définir tout instructions présente dans la partie "block" comme
 On exécutera le code sous forme de block afin de controler l'ordre de ce dernier.
 
 On défini des la détection d'un block la création de noeud enfant permettant de donner une forme "d'arborescence" à nos block.
-La définition des lables se fais des la détection du if et du elseif, permettant d'aller au label suivant si les if s'exécute normalement ou alors d'aller à la fin de ce dernier si la condition n'est pas respecté.
-Le block nous permet de définir un ensemble d'instruction a faire, cela permet de séparé, il sera appelé dans les if, elseif et else. 
+La définition des labels se fait dès la détection du if et du elseif, permettant d'aller au label suivant si les if s'exécute normalement ou alors d'aller à la fin de ce dernier si la condition n'est pas respecté.
+Le block nous permet de définir un ensemble d'instruction a faire, cela permet de séparer, il sera appelé dans les if, elseif et else. 
 
 Cette exercice m'aura permis d'ajouter 2 grands principes importants de la programmation conditonelle, les blocks permettant d'exécuter des suites de "if" dans des "if" et la modification de la détection des elseif, permettant l'addition en illimité de condition elseif. 
